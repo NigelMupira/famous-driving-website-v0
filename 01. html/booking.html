@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" id="booking">
+
+ <head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Famous Driving School Scheduling">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lesson Scheduling</title>
+	<link rel="icon" type="image/x-icon" href="../xxx/icon.ico">
+	<link rel="stylesheet" type="text/css" href="../css/booking.css">
+ </head>
+ 
+ <body>
+	<div id="header">
+     <h1>Lesson Booking</h1>
+	</div>
+
+	<div class="body">
+	 <div id="menu">
+	  <div id="id">
+	   <img src="../xxx/logo.png" id="logo" alt="Famous Driving School Logo" title="Famous Driving School">
+	   <h1>FAMOUS<br>DRIVING<br>SCHOOL</h1><br>
+	   <strong>"Steer Your Way to Success with Famous Driving School!"🚗💨</strong>
+	  </div>
+	  <a href="index.html">Home</a>
+	  <a href="services.html">Services</a>
+	  <a href="booking.html">Booking</a>
+	  <a href="about.html">About Us</a>
+	  <a href="contact.html">Contact Us</a>
+	  <a href="ratings.html">Ratings</a>
+	  <a href="help.html">Help</a>
+	 </div>
+	 
+	 <div id="main">
+      <div id="booking-form">
+	   <form action="submit.php" method="post">
+	    <h2>Book a Lesson</h2>
+	    <label for="name">Full Name:</label>
+	     <input type="text" id="name" name="name" placeholder="Enter your name here" required>
+		<fieldset class="gender">
+		 <legend>Gender</legend>
+		 <input type="radio" name="gender" value="male"> MALE
+		 <input type="radio" name="gender" value="female"> FEMALE
+		 <!-- radiobuttons wont show🤷🏽‍♂️🤷🏽‍♂️ -->
+		</fieldset>
+		<label for="dob">Date of Birth:</label>
+	     <input type="date" id="dob" name="dob" required>
+	    <label for="natID">National ID:</label>
+	     <input type="text" id="natID" name="natID" placeholder="Enter your ID/NIC number" required>
+	    <label for="number">Phone Number:</label>
+	     <input type="tel" id="number" name="number" placeholder="Enter your primary phone number" required>
+	    <label for="email">E-mail:</label>
+	     <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+	    <label for="address">Pysical Address:</label>
+	     <!-- <input type="text" name="address" id="address" placeholder="Enter your permanent address" required> -->
+	     <textarea id="address" name="address" rows="5" cols="30" placeholder="Enter your permanent address" required></textarea>
+	    <label for="date">Appointment Date:</label>
+	     <input type="date" id="date" name="date" required>
+	    <label for="appt">Select a Time:</label>
+	     <input type="time" id="time" name="appt" required>
+	    <br>
+		<input type="reset" id="reset" value="Reset" />
+	    <a href="#pay" class="btnlink next">PAYMENT METHOD</a>
+	   </form>
+	  </div>
+	 </div>
+	 
+     <div id="calendar">
+	  <h2>Calender</h2>
+	   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam, odio
+	   eu pretium euismod, risus ipsum blandit quam, vel euismod magna leo eget ipsum. Donec
+	   eu libero sit amet quam egestas semper. Aenean eu leo quam. Pellentesque ornare sem
+	   lacinia quam venenatis vestibulum.</p>
+	   <ul>
+	    <li>Experienced and certified instructors</li>
+	    <li>Affordable and flexible driving courses</li>
+	    <li>Excellent pass rates</li>
+	    <li>Friendly and patient instruction</li>
+	   </ul>	 
+	 </div>
+	</div>
+	
+ </body>
+
+</html>
