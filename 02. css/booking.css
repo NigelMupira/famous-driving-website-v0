@@ -18,21 +18,20 @@ h1 {
 }
 
 .body {
+	display: grid;
+	grid-template-columns: 20% 50% 30%;
 	margin-top: 25px;
 	margin-right: 25px;
-	margin-bottom: 25px;
 }
 
 #menu {
 	border: 1px solid #0000ff;
 	border-radius: 7px;
 	background-color: #00ccff;
-	float: left;
-	height: 100%;
-	width: 20%;
-	padding: 20px;
-	justify-content: center;
 	text-align: center;
+	justify-content: center;
+	height: auto;
+	padding: 20px;
 }
 
 #menu a {
@@ -58,8 +57,7 @@ h1 {
 }
 
 #main {
-	float: left;
-	width: 60%;
+	padding: 25px;
 }
 
 #booking-form {
@@ -71,7 +69,6 @@ h1 {
 	height: 1100px;
 	width: 750px;
 	margin: auto;
-	margin-top: 50px;
 	padding: 20px;
 }
 
@@ -160,12 +157,51 @@ input[type="radio"] {
 	
 }
 
-/* work on defining the calender section to the right */
-
-#calender {
+#calendar {
+	font-family: comic sans ms;
 	border: 1px solid #0000ff;
-	float: left;
-	width: 20%;
-	background-color: white;
-	color:;
+	border-radius: .3rem;
+	background-color: #00ccff;
+	text-align: center;
+	height: 750px;
+	padding: 15px;
+}
+
+#calendar table {
+	margin: auto;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#calendar th, td {
+	border: 1px solid #ddd;
+	text-align: center;
+	height: 50px;
+	padding: 10px;
+}
+
+#calendar th {
+	background-color: #0000ff;
+	color: #ffffff;
+}
+
+.today {
+	background-color: #0000ff;
+}
+
+.free {
+	background-color: #aaeeff;
+}
+
+.free:hover {
+	cursor: pointer;
+	background-color: #1e90ff;
+}
+
+.booked {
+	background-color: #cfefff;
+}
+
+#copy {
+	text-align: center
 }

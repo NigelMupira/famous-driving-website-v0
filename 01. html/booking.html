@@ -13,7 +13,7 @@
  
  <body>
 	<div id="header">
-     <h1>Lesson Booking</h1>
+     <h1><big>LESSON SCHEDULING</big></h1>
 	</div>
 
 	<div class="body">
@@ -42,7 +42,7 @@
 		 <legend>Gender</legend>
 		 <input type="radio" name="gender" value="male"> MALE
 		 <input type="radio" name="gender" value="female"> FEMALE
-		 <!-- radiobuttons wont show🤷🏽‍♂️🤷🏽‍♂️ -->
+		 <!-- radiobuttons wont show🤷🏽‍♂️🤷🏽‍♂️. pliz fix!!! -->
 		</fieldset>
 		<label for="dob">Date of Birth:</label>
 	     <input type="date" id="dob" name="dob" required>
@@ -61,26 +61,80 @@
 	     <input type="time" id="time" name="appt" required>
 	    <br>
 		<input type="reset" id="reset" value="Reset" />
-	    <a href="#pay" class="btnlink next">PAYMENT METHOD</a>
+	    <a href="#pay" class="btnlink next" onclick="paymentMethod()">PAYMENT METHOD</a>
 	   </form>
 	  </div>
 	 </div>
 	 
      <div id="calendar">
-	  <h2>Calender</h2>
-	   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam, odio
-	   eu pretium euismod, risus ipsum blandit quam, vel euismod magna leo eget ipsum. Donec
-	   eu libero sit amet quam egestas semper. Aenean eu leo quam. Pellentesque ornare sem
-	   lacinia quam venenatis vestibulum.</p>
-	   <ul>
-	    <li>Experienced and certified instructors</li>
-	    <li>Affordable and flexible driving courses</li>
-	    <li>Excellent pass rates</li>
-	    <li>Friendly and patient instruction</li>
-	   </ul>	 
+	  <h2>APPOINTMENT SCHEDULE</h2><br>
+	  <button>&lt;</button>
+	   May 2024
+	  <button>&gt;</button><br><br>
+	  <table>
+	   <tr>
+	    <th>Sun</th>
+	    <th>Mon</th>
+	    <th>Tue</th>
+	    <th>Wed</th>
+	    <th>Thu</th>
+	    <th>Fri</th>
+	    <th>Sat</th>
+	   </tr>
+	   <tr>
+	    <td class="booked"></td>
+	    <td class="booked"></td>
+	    <td class="booked"></td>
+	    <td class="booked today">1</td>
+	    <td class="free clickable">2</td>
+	    <td class="booked">3</td>
+	    <td class="free clickable">4</td>
+	   </tr>
+	   <tr>
+	    <td class="booked">5</td>
+	    <td class="free clickable">6</td>
+	    <td class="booked">7</td>
+	    <td class="free clickable">8</td>
+	    <td class="booked">9</td>
+	    <td class="free clickable">10</td>
+	    <td class="booked">11</td>
+	   </tr>
+	   <tr>
+	    <td class="booked">12</td>
+	    <td class="free clickable">13</td>
+	    <td class="free clickable">14</td>
+	    <td class="booked">15</td>
+	    <td class="free clickable">16</td>
+	    <td class="free clickable">17</td>
+	    <td class="booked">18</td>
+	   </tr>
+	   <tr>
+	    <td class="booked">19</td>
+	    <td class="booked">20</td>
+	    <td class="free clickable">21</td>
+	    <td class="booked">22</td>
+	    <td class="free clickable">23</td>
+	    <td class="booked">24</td>
+	    <td class="free clickable">25</td>
+	   </tr>
+	   <tr>
+	    <td class="booked">26</td>
+	    <td class="free clickable">27</td>
+	    <td class="free clickable">28</td>
+	    <td class="booked">29</td>
+	    <td class="free clickable">30</td>
+	    <td class="booked">31</td>
+	    <td class="free clickable"></td>
+	   </tr>
+	  </table>
 	 </div>
 	</div>
+	 
+	<footer id="copy">
+	 <p>&copy; 2024 Famous Driving School. All rights reserved.</p>
+	</footer>
 	
+	<script src="../03. js/booking.js"></script>
  </body>
 
 </html>

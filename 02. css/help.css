@@ -84,6 +84,7 @@ body {
 }
 
 .container {
+	font-family: bradley hand, cursive;
 	width: 70%;
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -127,4 +128,8 @@ h3 {
 	width: 210px;
 	height: 150px;
 	border: 1px solid #1e90ff;
+}
+
+#copy {
+	text-align: center
 }
