@@ -68,9 +68,19 @@ section {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+#team 
+{
+	height: 500px;
+}
+
 h1 {
 	color: #007bff;
 	text-align: center;
+}
+
+.flesh 
+{
+	font-family: comic sans ms;
 }
 
 #header {
@@ -87,4 +97,8 @@ h2 {
 
 p {
 	color: #333;
+}
+
+#copy {
+	text-align: center
 }
