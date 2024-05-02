@@ -4,48 +4,50 @@
 
 body{
 	background-color: #1e90ff;
+	font-family: courier;
 }
 
-.navbar {
-	background-color: #0000ff;
-	display:flex;
+#header {
+	background-color:#cceeff;
+	padding: 15px;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+.body {
+	text-align: center;
+	display: grid;
+	grid-template-columns: 20% 80%;
+	margin-top: 25px;
+	margin-right: 25px;
+}
+
+#menu {
+	border: 1px solid #0000ff;
+	border-radius: 7px;
+	background-color: #00ccff;
+	height: auto;
+	padding: 20px;
 	justify-content: center;
+	text-align: center;
 }
 
-.navbar ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0px;
-	overflow: hidden;
-}
-
-.navbar li {
-	float: left;
-}
-
-.navbar li a {
+#menu a {
 	display: block;
+	background-color:#0000ff;
 	color: #ffffff;
 	text-align: center;
+	width: 100%;
+	margin-top: 7px;
 	padding: 16px;
 	text-decoration: none;
 }
 
-.navbar li a:hover {
-	background-color: #00ccff;
-}
-
-.header {
-	background-color: #00ccff;
-	font-family: courier;
-	display: flex;
-	flex-wrap: nowrap;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	height: 200px;
+#id {
 	margin-bottom: 75px;
-	padding: 25px;
 }
 
 #logo {
@@ -55,9 +57,9 @@ body{
 	margin-top:-25px;
 }
 
-.body {
-	font-family: courier;
-	text-align: center;
+#main {
+	font-family: comic sans ms;
+	padding-bottom: 20px;
 }
 
 .container{
@@ -71,14 +73,14 @@ body{
 }
 
 .one{
-	margin-top:25px;
+	margin-top: 0px;
 }
 
 .two {}
 
-.three{}
-
-.four{}
+.three {
+	margin-bottom: 0px;
+}
 
 .tables {
 	display: grid;
@@ -121,4 +123,8 @@ th {
 
 .heading {
 		width:200px;
+}
+
+#copy {
+	text-align: center
 }
