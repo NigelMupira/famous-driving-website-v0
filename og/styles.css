@@ -1,0 +1,37 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {text-align: center;
+}
+
+#calendar {
+    margin-bottom: 20px;
+}
+
+#booking-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input[type="text"]
+form input[type="email"]
+form input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+form input[type="submit"] {
+    background-color: gray;
+    color: black;
+    cursor: pointer;
+}
+

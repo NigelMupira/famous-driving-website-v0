@@ -1,0 +1,111 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ratings n Reviews </title>  
+
+
+</head>
+<body style="margin:10px; border:7px solid white;">
+
+    <style>
+        body {
+            background-color: floralwhite;
+        }
+
+        .star-breakdown {
+            background-color: white;
+        }
+        #taflo {
+            background-image: url('OIP (1).jpg');
+        }
+
+    </style>
+    <h1  style="color:rosybrown">Student Ratings and Reviews</h1>
+
+    <!-- Overall Rating -->
+    <div style="border:3px solid white; background-color:white;" class="overall-rating">
+        <h2 style="color:rosybrown">Overall Rating</h2>
+
+
+        <p>Average: <span class="rating">4 stars</span></p>
+        <span>&#9733;</span>
+        <span>&#9733;</span>
+        <span>&#9733;</span>
+        <span>&#9733;</span>
+    </div>
+
+    <!-- Individual Reviews -->
+    <div class="reviews" style="color:">
+
+        <div class="review">
+            <h3>Tafadzwa Kudumba</h3>
+            <p class="date">Reviewed on Jan 10, 2024</p>
+            <p class="content">I had a great experience with this driving school. The instructor was patient and knowledgeable.</p>
+
+            <h3>Nigel Mpira</h3>
+            <p class="date">Reviewed on February 10, 2024</p>
+            <p class="content"> "The team go out of their way to support the learners. The ladies at Reception all work so well together and really try to accommodate a dynamic situation. Frank my instructor was very busy but managed to fit me in and again went out of his way to support me. I have yet to find any business as focused on customer support, thank you guys highly recommend for all your driving needs.</p>
+
+            <h3>Trevor Majora</h3>
+            <p class="date">Reviewed on February 19, 2024</p>
+            <p class="content">  "Jon the best driving instructor. Where do I start with Jon, he’s honestly lovely, calm and a great driving instructor. Did an intensive course and just over a month with him I managed to pass first time with 5 minors. His car was always clean which was amazing and his humour did keep me going through the more challenging times. Honestly not a bad word to say and he was always punctual</p>
+
+            <h3>Tanaka Nhekairo</h3>
+            <p class="date">Reviewed on February 23, 2024</p>
+            <p class="content"> I have had Mr Moyo as my driving instructor for the last few months. Over this time he has worked with me to improve my driving skill and build my confidence on the road, ultimately enabling me to pass my driving test. Mr Moyo has been an instrumental part of my driving journey, helping me to identify and address poor driving habits I had unknowingly picked up from a previous instructor. His instructions are calm, patient and coherent, and I always thoroughly enjoy our drives together! Could not have asked for a better instructor to get me over the finish line. Many thanks to Famous Driving School, once again</p>
+
+            <h3>Rufaro Mokoomba</h3>
+            <p class="date">Reviewed on February 28, 2024</p>
+            <p class="date"> "If only I could give 0 stars… Mr Moyo is, without a doubt, the worst driving instructor I have ever experienced. He is incredibly rude and made me feel belittled for the simplest of mistakes, causing me to feel stressed out which made it harder for me to focus during the lesson. He was also incredibly nitpicky, getting angry at me for ‘closing the car door too hard’, and he made some incredibly racist comments about other road users on multiple occasions</p>
+
+            <h3>Vongai  Maripisa</h3>
+            <p class="date">Reviewed on March 04, 2024</p>
+            <p class="date">"Tatenda was the best driving instructor I have ever been taught by! His experience and knowledge taught me loads to get me where I needed to be on test day! Reason I passed! Couldn’t give him enough credit! Very much recommend </p>
+
+        </div>
+        <!-- Repeat the above structure for more reviews -->
+    </div>
+
+    <!-- Star Ratings Breakdown -->
+
+    <div class="star-breakdown" id="taflo" style="border: 3px solid white; " class="overall-rating">
+        
+        <h2 style="color:rosybrown">Star Ratings Breakdown</h2>
+        <ul>
+            <li  style="color:darkred">5 stars: 80%</li>
+            <li  style="color:darkred">4 stars: 15%</li>
+            <li  style="color:darkred">3 stars: 3%</li>
+            <li  style="color:darkred">2 stars: 1%</li>
+            <li  style="color:darkred">1 star: 1%</li>
+        </ul>
+    </div>
+
+    <!-- Add a form for users to submit their own reviews -->
+    <div>
+        <h2 style="color:rosybrown">Submit Your Review</h2>
+        <form action="submit_review.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" rows="4" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Driving School. All rights reserved.</p>
+    </footer>
+   
+</body>
+</html>
