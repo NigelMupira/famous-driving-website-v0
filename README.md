@@ -35,7 +35,7 @@ market growth) in your area of study.
 
 * Harare Institute of Technology
 * School of Information Science and Technology
-* **Degree:** Information Security and Assurance
+* **Degree:** (BSc) Information Security and Assurance
 * **Course:** ISS2105 Web Technologies
 * **Lecturer:** Wilton Muzava (wmuzava@hit.ac.zw)
 
