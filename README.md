@@ -41,8 +41,6 @@ market growth) in your area of study.
 
 ## Contributors:
 
-* This project was built by a the following group of 7 students as a solution to an assignment:
-
   * Kapfidze Tadiwanashe D. H230762X
   * Kudumba Tafadzwa A. H230638M
   * Kundishora Vongayi T. H230693F
