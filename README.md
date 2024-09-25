@@ -1,14 +1,15 @@
 # Famous Driving School Website Project
 
-* This project is a driving school website built by a group of 7 students as an assignment for an undergraduate course. 
+* This project is a driving school website built by a group of 7 students as an assignment for an undergraduate course.
+* #### I have since created a new repo for submission of the project as a solution to our assignment and kept this one for personal review❗ ####
 * Famous Driving School was established in 2014 with the aim of promoting road safety and providing high quality driving education. 
 
-**Description:**
+## Description:
 
 * This website aims increase the driving school's market so as to attract potential customers in the digital world.
-* This is going to be archieved by providing informative content and functionalities for a driving school. 
+* This is going to be achieved by providing informative content and functionalities for a driving school. 
 
-**Features:**
+## Features:
 
 * Informative pages about driving courses
 * Online appointment booking
@@ -16,14 +17,36 @@
 * Location details
 * Responsive design
 
-**Technology Stack:**
+## Technology Stack:
 
 * HTML
 * CSS
 * JavaScript
 
-**Assignment Details:**
+## Assignment Details:
 
-* Choose one product/service which is lacking i.e. (revenue/ profit/ market share/
-market growth) in your area of study
-* Our area of study is Information Security and Assurance
+* **Academic year** 1 (2023/24) **Semester** 2
+* **Period:** March-May 2024
+* **Practical 1 (Mini Project)**
+* **Question:** Choose one product/service which is lacking i.e. (revenue/ profit/ market share/
+market growth) in your area of study.
+
+## School Details
+
+* Harare Institute of Technology
+* School of Information Science and Technology
+* **Degree:** Information Security and Assurance
+* **Course:** ISS2105 Web Technologies
+* **Lecturer:** Wilton Muzava (wmuzava@hit.ac.zw)
+
+## Contributors:
+
+* This project was built by a the following group of 7 students as a solution to an assignment:
+
+  * Kapfidze Tadiwanashe D. H230762X
+  * Kudumba Tafadzwa A. H230638M
+  * Kundishora Vongayi T. H230693F
+  * Mupira Nigel H230828V
+  * Ngwerume Makatida H230006G
+  * Mandimika Ropafadzo V. H230048N
+  * Nhekairo Tanaka S. H230261H
