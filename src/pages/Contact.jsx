@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { submitContact } from '../services/api';
 
 export default function Contact({ setToast }) {
@@ -51,7 +51,7 @@ export default function Contact({ setToast }) {
           Contact Famous Driving School
         </h1>
         <p className="text-slate-300 text-base leading-relaxed">
-          Have questions about learner's permits, practical lesson schedules, or custom packages? We're here to help.
+          Have questions about Class 4, Class 2, provisional theory, or combo packages? Reach out to our Harare team.
         </p>
       </div>
 
@@ -74,7 +74,7 @@ export default function Contact({ setToast }) {
                 </div>
                 <div>
                   <h4 className="font-bold text-white">Physical Location</h4>
-                  <p className="text-xs text-slate-400 mt-1">Harare Institute of Technology Campus / CBD Branch, Harare, Zimbabwe</p>
+                  <p className="text-xs text-slate-400 mt-1">Robert Mugabe Square, Harare, Zimbabwe</p>
                 </div>
               </div>
 
@@ -84,9 +84,11 @@ export default function Contact({ setToast }) {
                 </div>
                 <div>
                   <h4 className="font-bold text-white">Phone & WhatsApp</h4>
-                  <a href="tel:+263771234567" className="text-xs text-slate-300 hover:text-amber-400 block mt-1">+263 77 123 4567</a>
-                  <a href="https://wa.me/263771234567" target="_blank" rel="noreferrer" className="text-[11px] text-emerald-400 font-semibold hover:underline block mt-0.5">
-                    Click to chat on WhatsApp
+                  <a href="tel:+263714887143" className="text-xs text-slate-300 hover:text-amber-400 block mt-1">
+                    Phone: +263 71 488 7143
+                  </a>
+                  <a href="https://wa.me/263772765757" target="_blank" rel="noreferrer" className="text-[11px] text-emerald-400 font-semibold hover:underline block mt-0.5">
+                    WhatsApp: +263 77 276 5757
                   </a>
                 </div>
               </div>
@@ -97,24 +99,26 @@ export default function Contact({ setToast }) {
                 </div>
                 <div>
                   <h4 className="font-bold text-white">Email Address</h4>
-                  <a href="mailto:info@famousdrivingschool.co.zw" className="text-xs text-slate-300 hover:text-amber-400 block mt-1">info@famousdrivingschool.co.zw</a>
+                  <a href="mailto:famousdrivingschool@gmail.com" className="text-xs text-slate-300 hover:text-amber-400 block mt-1">
+                    famousdrivingschool@gmail.com
+                  </a>
                 </div>
               </div>
 
             </div>
           </div>
 
-          {/* Location Map Placeholder Card */}
+          {/* Location Operating Status */}
           <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
             <h4 className="text-sm font-bold text-white flex items-center gap-2">
               <Clock className="w-4 h-4 text-amber-400" />
-              Operating Status
+              Office Operating Status
             </h4>
             <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs">
               <span className="text-slate-300 font-medium">Currently:</span>
               <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Open for Enquiries</span>
+                <span>Open for Bookings & Inquiries</span>
               </span>
             </div>
           </div>
@@ -126,14 +130,14 @@ export default function Contact({ setToast }) {
           <div className="glass-panel p-8 rounded-3xl border border-slate-800 space-y-6">
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-white">Send Us A Message</h3>
-              <p className="text-xs text-slate-400">Fill in your details below and our customer care team will get back to you within 2 hours.</p>
+              <p className="text-xs text-slate-400">Fill in your details below and our customer care team will get back to you shortly.</p>
             </div>
 
             {submittedSuccess ? (
               <div className="p-8 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-4">
                 <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
                 <h4 className="text-xl font-bold text-white">Message Sent Successfully!</h4>
-                <p className="text-xs text-slate-300">Thank you for contacting Famous Driving School. We have received your message and sent a copy to your email.</p>
+                <p className="text-xs text-slate-300">Thank you for contacting Famous Driving School. We have received your message.</p>
                 <button
                   onClick={() => setSubmittedSuccess(false)}
                   className="px-6 py-2.5 rounded-xl font-bold bg-slate-800 text-slate-200 text-xs hover:bg-slate-700"
@@ -149,7 +153,7 @@ export default function Contact({ setToast }) {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Vongayi Kundishora"
+                      placeholder="e.g. Nigel Mupira"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500"
@@ -160,7 +164,7 @@ export default function Contact({ setToast }) {
                     <input
                       type="email"
                       required
-                      placeholder="vongayi@example.com"
+                      placeholder="student@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500"
@@ -187,10 +191,10 @@ export default function Contact({ setToast }) {
                       className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500"
                     >
                       <option value="General Inquiry">General Inquiry</option>
-                      <option value="Learners Theory Course">Learner's Theory Course</option>
-                      <option value="Practical Lessons Schedule">Practical Lessons Schedule</option>
-                      <option value="Defensive Driving Certificate">Defensive Driving Certificate</option>
-                      <option value="Pricing & Payments">Pricing & Payments</option>
+                      <option value="Provisional Theory Lessons">Provisional Theory Lessons ($15)</option>
+                      <option value="Class 4 Driving Package">Class 4 Driving Package</option>
+                      <option value="Class 2 Heavy Driving Package">Class 2 Heavy Driving Package</option>
+                      <option value="Combo Package Pricing">Combo Package Pricing</option>
                     </select>
                   </div>
                 </div>

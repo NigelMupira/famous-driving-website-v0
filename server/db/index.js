@@ -1,7 +1,6 @@
 import { DatabaseSync } from 'node:sqlite';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -89,59 +88,116 @@ export function initDB() {
     );
   `);
 
-  // Seed default data if courses empty
-  const courseCount = db.prepare('SELECT COUNT(*) as count FROM courses').get();
-  if (courseCount.count === 0) {
-    seedData();
-  }
+  // Clear existing and re-seed authentic legacy data
+  db.exec('DELETE FROM courses;');
+  db.exec('DELETE FROM instructors;');
+  db.exec('DELETE FROM reviews;');
+  db.exec('DELETE FROM faqs;');
+  
+  seedAuthenticLegacyData();
 }
 
-function seedData() {
-  // Seed Courses
+function seedAuthenticLegacyData() {
+  // Seed Authentic Courses & Combos from original group assignment
   const courses = [
     {
-      id: 'learner-prep',
-      title: 'Learner\'s Permit Mastery Course',
+      id: 'provisional-lessons',
+      title: 'Provisional Theory Lessons (Class 2 & Class 4)',
       category: 'Theory & Test Prep',
-      description: 'Comprehensive highway code, traffic signs, rules of the road, and mock examination preparation.',
-      duration: '2 Weeks (Theory & Practice)',
-      price: 65,
-      badge: 'Most Popular',
-      features: JSON.stringify(['Complete Highway Code Manual', '100+ Mock Exam Questions', 'Interactive Sign Quiz Engine', 'VID Examination Guarantee']),
-      code: 'Class 4 Theory'
+      description: 'Complete Highway Code theory, road traffic signs, and practice tests for Class 2 and Class 4 provisional licenses.',
+      duration: 'Unlimited Until You Pass',
+      price: 15,
+      badge: 'Essential',
+      features: JSON.stringify(['Highway Code Manual Included', 'Class 2 & Class 4 Sign Tests', 'Mock Exam Question Papers', 'Pass Guarantee Support']),
+      code: 'Class 2 & 4 Theory'
     },
     {
-      id: 'practical-code-8',
-      title: 'Light Motor Vehicle (Class 4 Practical)',
+      id: 'class-4-lesson',
+      title: 'Class 4 Single Driving Lesson (Light Vehicles)',
       category: 'Practical Driving',
-      description: 'Hands-on behind-the-wheel instruction in modern dual-control sedans covering parallel parking, three-point turns, and road driving.',
-      duration: '10 Lessons (1 hr each)',
-      price: 180,
+      description: 'Behind-the-wheel practical driving instruction in dual-controlled light motor vehicles.',
+      duration: 'Per 1-Hour Lesson',
+      price: 5,
+      badge: 'Pay As You Go',
+      features: JSON.stringify(['Dual-Control Sedan', 'Parallel Parking & 3-Point Turn', 'CBD City Driving', 'Patient Experienced Instructor']),
+      code: 'Class 4 Single'
+    },
+    {
+      id: 'class-2-lesson',
+      title: 'Class 2 Single Driving Lesson (Heavy Vehicles)',
+      category: 'Practical Driving',
+      description: 'Behind-the-wheel practical driving instruction in heavy motor vehicles (trucks/buses).',
+      duration: 'Per 1-Hour Lesson',
+      price: 7,
+      badge: 'Heavy Vehicle',
+      features: JSON.stringify(['Heavy Vehicle Dual Control', 'Clutch & Gear Control', 'Reversing & Docking Drills', 'Certified Class 2 Instructor']),
+      code: 'Class 2 Single'
+    },
+    {
+      id: 'combo-c4-lite',
+      title: 'Class 4 Combo Lite Package',
+      category: 'Combo Package',
+      description: 'Complete entry package covering provisional lessons, 10 practical driving lessons, and vehicle hire for your VID test.',
+      duration: '10 Lessons + Car Hire',
+      price: 100,
+      badge: 'Popular Combo',
+      features: JSON.stringify(['Provisional Theory Lessons', '10 Class 4 Driving Lessons', 'VID Test Car Hire', 'Save vs Single Lessons']),
+      code: 'Class 4 Combo'
+    },
+    {
+      id: 'combo-c4-ultra',
+      title: 'Class 4 Combo Ultra Package',
+      category: 'Combo Package',
+      description: 'Recommended comprehensive package featuring provisional lessons, 20 practical driving lessons, and VID test car hire.',
+      duration: '20 Lessons + Car Hire',
+      price: 140,
       badge: 'Best Value',
-      features: JSON.stringify(['Dual-Control Safety Vehicles', '3-Point Turn & Parallel Park Training', 'City & Highway Road Practice', 'Flexible Scheduling']),
-      code: 'Class 4'
+      features: JSON.stringify(['Provisional Theory Lessons', '20 Class 4 Driving Lessons', 'VID Test Car Hire', 'Mock Test Evaluation']),
+      code: 'Class 4 Combo'
     },
     {
-      id: 'defensive-driving',
-      title: 'Advanced Defensive Driving Certification',
-      category: 'Specialized Training',
-      description: 'Hazard identification, adverse weather navigation, collision avoidance techniques, and certified defensive driving qualification.',
-      duration: '1 Full Day Workshop',
-      price: 120,
-      badge: 'Certified',
-      features: JSON.stringify(['Official Defensive Certificate', 'Emergency Braking & Skid Control', 'Night & Bad Weather Drills', 'Corporate Discount Available']),
-      code: 'Defensive'
+      id: 'combo-c4-ultimate',
+      title: 'Class 4 Combo Ultimate Package',
+      category: 'Combo Package',
+      description: 'Mastery package for absolute beginners with provisional lessons, 30 practical driving lessons, and VID test car hire.',
+      duration: '30 Lessons + Car Hire',
+      price: 170,
+      badge: 'Complete Mastery',
+      features: JSON.stringify(['Provisional Theory Lessons', '30 Class 4 Driving Lessons', 'VID Test Car Hire', 'High-Confidence Guarantee']),
+      code: 'Class 4 Combo'
     },
     {
-      id: 'refresher-course',
-      title: 'Confidence & Refresher Package',
-      category: 'Skills Refresh',
-      description: 'Tailored for licensed drivers needing to regain confidence in dense city traffic, highway merging, or parking.',
-      duration: '5 Lessons (1 hr each)',
-      price: 95,
-      badge: 'Quick Boost',
-      features: JSON.stringify(['Custom Focus Areas', 'Harare CBD Traffic Handling', 'Night Driving Drills', 'Instructor Feedback Report']),
-      code: 'Refresher'
+      id: 'combo-c2-lite',
+      title: 'Class 2 Heavy Vehicle Combo Lite',
+      category: 'Heavy Combo',
+      description: 'Heavy vehicle package including provisional lessons, 10 Class 2 driving lessons, and heavy truck VID test car hire.',
+      duration: '10 Heavy Lessons + Truck Hire',
+      price: 150,
+      badge: 'Heavy Lite',
+      features: JSON.stringify(['Provisional Theory Lessons', '10 Class 2 Driving Lessons', 'Heavy Truck VID Hire', 'Professional Coaching']),
+      code: 'Class 2 Combo'
+    },
+    {
+      id: 'combo-c2-ultra',
+      title: 'Class 2 Heavy Vehicle Combo Ultra',
+      category: 'Heavy Combo',
+      description: 'Popular heavy vehicle package including provisional lessons, 20 Class 2 driving lessons, and truck hire.',
+      duration: '20 Heavy Lessons + Truck Hire',
+      price: 180,
+      badge: 'Heavy Recommended',
+      features: JSON.stringify(['Provisional Theory Lessons', '20 Class 2 Driving Lessons', 'Heavy Truck VID Hire', 'Complete Road Maneuvers']),
+      code: 'Class 2 Combo'
+    },
+    {
+      id: 'combo-c2-ultimate',
+      title: 'Class 2 Heavy Vehicle Combo Ultimate',
+      category: 'Heavy Combo',
+      description: 'Ultimate heavy vehicle mastery package with provisional lessons, 30 Class 2 driving lessons, and truck hire.',
+      duration: '30 Heavy Lessons + Truck Hire',
+      price: 210,
+      badge: 'Heavy Ultimate',
+      features: JSON.stringify(['Provisional Theory Lessons', '30 Class 2 Driving Lessons', 'Heavy Truck VID Hire', 'Commercial Fleet Readiness']),
+      code: 'Class 2 Combo'
     }
   ];
 
@@ -154,37 +210,47 @@ function seedData() {
     insertCourse.run(c.id, c.title, c.category, c.description, c.duration, c.price, c.badge, c.features, c.code);
   }
 
-  // Seed Instructors
+  // Seed Authentic Instructors (Frank, Jon, Tatenda, Mr. Moyo)
   const instructors = [
     {
-      id: 'inst-1',
-      name: 'Tafadzwa Kudumba',
-      title: 'Senior Chief Driving Instructor',
-      bio: 'Over 12 years of driving instruction experience with an outstanding 99.6% student pass rate.',
-      experience: '12+ Years',
-      qualifications: 'Certified Advanced VID Driving Instructor, Defensive Master Trainer',
-      rating: 4.9,
-      specialty: 'Class 4 Practical & Parallel Parking'
-    },
-    {
-      id: 'inst-2',
-      name: 'Vongayi Kundishora',
-      title: 'Lead Theory & Defensive Specialist',
-      bio: 'Specializes in high-anxiety student coaching, turning nervous beginners into calm, confident drivers.',
-      experience: '8+ Years',
-      qualifications: 'BSc Safety Management, Certified Highway Code Examiner',
+      id: 'inst-frank',
+      name: 'Frank',
+      title: 'Senior Class 4 Driving Instructor',
+      bio: 'Known for going out of his way to support students through tight schedules and intensive test preparation.',
+      experience: '10+ Years',
+      qualifications: 'Certified Class 4 Instructor, Customer Choice Award',
       rating: 4.95,
-      specialty: 'Defensive Driving & Traffic Theory'
+      specialty: 'Class 4 Practical & Intensive Coaching'
     },
     {
-      id: 'inst-3',
-      name: 'Makatida Ngwerume',
-      title: 'Fleet & Practical Instructor',
-      bio: 'Patient and articulate instructor focused on precision vehicle control and city traffic navigation.',
-      experience: '6+ Years',
-      qualifications: 'Class 2 & Class 4 Certified Instructor',
-      rating: 4.88,
-      specialty: 'City Road Mastery & Night Drills'
+      id: 'inst-jon',
+      name: 'Jon',
+      title: 'Intensive Course & Confidence Trainer',
+      bio: 'Renowned for his calm demeanor, spotless training vehicles, and humorous supportive coaching style.',
+      experience: '8+ Years',
+      qualifications: 'Certified Driving Instructor, First-Time Pass Specialist',
+      rating: 4.92,
+      specialty: 'Intensive Courses & First-Time Test Prep'
+    },
+    {
+      id: 'inst-tatenda',
+      name: 'Tatenda',
+      title: 'Practical Road Test Specialist',
+      bio: 'Deep knowledge of VID examination criteria, helping learners overcome nervous habits before test day.',
+      experience: '7+ Years',
+      qualifications: 'Certified Driving Instructor, Defensive Driving Trainer',
+      rating: 4.98,
+      specialty: 'VID Test Routes & Road Readiness'
+    },
+    {
+      id: 'inst-moyo',
+      name: 'Mr. Moyo',
+      title: 'Class 2 & Class 4 Instructor',
+      bio: 'Experienced instructor providing methodical instruction for both light and heavy motor vehicles.',
+      experience: '12+ Years',
+      qualifications: 'Certified Class 2 & Class 4 Instructor',
+      rating: 4.85,
+      specialty: 'Class 2 Heavy Vehicles & City Traffic'
     }
   ];
 
@@ -197,38 +263,46 @@ function seedData() {
     insertInstructor.run(inst.id, inst.name, inst.title, inst.bio, inst.experience, inst.qualifications, inst.rating, inst.specialty);
   }
 
-  // Seed Initial Reviews
+  // Seed Authentic Reviews from original group assignment
   const reviews = [
     {
       author_name: 'Nigel Mupira',
-      course_title: 'Light Motor Vehicle (Class 4 Practical)',
+      course_title: 'Class 4 Combo Ultra Package',
       rating: 5,
-      comment: 'From nervous to completely confident! Tafadzwa broke down parallel parking into simple steps. Passed my VID road test on the very first try!',
+      comment: 'The team go out of their way to support the learners. The ladies at Reception all work so well together and really try to accommodate a dynamic situation. Frank my instructor was very busy but managed to fit me in and again went out of his way to support me. I have yet to find any business as focused on customer support, thank you guys highly recommend for all your driving needs.',
+      helpful_votes: 18,
+      unhelpful_votes: 0
+    },
+    {
+      author_name: 'Tafadzwa Kudumba',
+      course_title: 'Provisional Theory Lessons',
+      rating: 5,
+      comment: 'I had a great experience with this driving school. The instructor was patient and knowledgeable. Passed my provisional theory exam with ease!',
+      helpful_votes: 12,
+      unhelpful_votes: 0
+    },
+    {
+      author_name: 'Trevor Majora',
+      course_title: 'Class 4 Single Driving Lesson',
+      rating: 5,
+      comment: 'Jon the best driving instructor! Where do I start with Jon, he’s honestly lovely, calm and a great driving instructor. Did an intensive course and in just over a month with him I managed to pass first time with 5 minors. His car was always clean which was amazing and his humour kept me going through challenging times.',
+      helpful_votes: 15,
+      unhelpful_votes: 1
+    },
+    {
+      author_name: 'Tanaka Nhekairo',
+      course_title: 'Class 4 Combo Lite Package',
+      rating: 5,
+      comment: 'I have had Mr Moyo as my driving instructor for the last few months. Over this time he has worked with me to improve my driving skill and build my confidence on the road, ultimately enabling me to pass my driving test. Instructions were calm and coherent. Many thanks to Famous Driving School!',
       helpful_votes: 14,
       unhelpful_votes: 0
     },
     {
-      author_name: 'Tanaka Nhekairo',
-      course_title: 'Learner\'s Permit Mastery Course',
+      author_name: 'Vongai Maripisa',
+      course_title: 'Class 4 Combo Ultimate Package',
       rating: 5,
-      comment: 'The mock quizzes and interactive sign tests were identical to the real test questions. Scored 24/25 on my provisional test!',
-      helpful_votes: 9,
-      unhelpful_votes: 1
-    },
-    {
-      author_name: 'Ropafadzo Mandimika',
-      course_title: 'Advanced Defensive Driving Certification',
-      rating: 5,
-      comment: 'Incredible workshop! The emergency braking drills and hazard recognition scenarios were eye-opening. Highly recommend to every driver.',
-      helpful_votes: 11,
-      unhelpful_votes: 0
-    },
-    {
-      author_name: 'Tadiwanashe Kapfidze',
-      course_title: 'Confidence & Refresher Package',
-      rating: 5,
-      comment: 'Great refresher course after not driving for 3 years. Clear guidance, dual control safety, and very patient staff.',
-      helpful_votes: 6,
+      comment: 'Tatenda was the best driving instructor I have ever been taught by! His experience and knowledge taught me loads to get me where I needed to be on test day! Reason I passed! Couldn’t give him enough credit!',
+      helpful_votes: 10,
       unhelpful_votes: 0
     }
   ];
@@ -242,32 +316,27 @@ function seedData() {
     insertReview.run(r.author_name, r.course_title, r.rating, r.comment, r.helpful_votes, r.unhelpful_votes);
   }
 
-  // Seed FAQs
+  // Seed Authentic FAQs
   const faqs = [
     {
-      category: 'Learner Permits',
-      question: 'What documents do I need to enroll for a Learner\'s Permit class?',
-      answer: 'You will need a valid National I.D. or Passport, two passport-sized photographs, and be at least 16 years of age for Class 4.'
-    },
-    {
-      category: 'Booking & Lessons',
-      question: 'Can I choose my preferred driving instructor and schedule?',
-      answer: 'Yes! Our dynamic booking system allows you to select your preferred instructor, date, and 1-hour time slot based on live availability.'
-    },
-    {
-      category: 'Testing & Pass Rates',
-      question: 'What is Famous Driving School\'s pass rate for first-time test takers?',
-      answer: 'Our students achieve a 99.4% first-time pass rate on provisional theory tests and over 94% first-time pass rate on VID practical tests.'
-    },
-    {
-      category: 'Vehicles & Safety',
-      question: 'Are your instruction vehicles safe and dual-controlled?',
-      answer: 'All Famous Driving School vehicles are modern, regularly serviced, fully insured, and equipped with certified instructor dual-control brake/clutch systems.'
+      category: 'Pricing & Refunds',
+      question: 'What are the prices for individual Class 4 and Class 2 driving lessons?',
+      answer: 'Provisional theory lessons are $15 (unlimited until you pass). Class 4 single practical lessons are $5 per lesson, and Class 2 single practical lessons are $7 per lesson.'
     },
     {
       category: 'Pricing & Refunds',
-      question: 'Do you offer installment payment options for full driving packages?',
-      answer: 'Yes, we offer flexible 2-part installment options for complete Class 4 packages so you can pay as you progress.'
+      question: 'What is included in the Combo packages?',
+      answer: 'All Class 4 and Class 2 Combo packages (Combo Lite, Combo Ultra, Combo Ultimate) include full provisional theory lessons, your selected number of driving lessons (10, 20, or 30), and car/truck hire for your official VID test.'
+    },
+    {
+      category: 'Learner Permits',
+      question: 'Do you offer provisional lessons for both Class 2 and Class 4?',
+      answer: 'Yes! Our provisional theory package ($15) covers both Class 2 (heavy motor vehicles) and Class 4 (light motor vehicles).'
+    },
+    {
+      category: 'Booking & Lessons',
+      question: 'Where is Famous Driving School located and how do I contact support?',
+      answer: 'We are located at Robert Mugabe Square, Harare, Zimbabwe. You can reach us via Phone at +263 71 488 7143, WhatsApp at +263 77 276 5757, or Email at famousdrivingschool@gmail.com.'
     }
   ];
 
@@ -280,11 +349,14 @@ function seedData() {
     insertFaq.run(f.category, f.question, f.answer);
   }
 
-  // Seed Admin Account (Password: admin123)
-  db.prepare(`
-    INSERT INTO admins (username, password_hash)
-    VALUES ('admin', 'admin123')
-  `).run();
+  // Ensure Admin User Exists
+  const adminCount = db.prepare('SELECT COUNT(*) as count FROM admins').get();
+  if (adminCount.count === 0) {
+    db.prepare(`
+      INSERT INTO admins (username, password_hash)
+      VALUES ('admin', 'admin123')
+    `).run();
+  }
 }
 
 export default db;
