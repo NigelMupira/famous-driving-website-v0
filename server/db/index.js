@@ -88,7 +88,7 @@ export function initDB() {
     );
   `);
 
-  // Clear existing and re-seed authentic legacy data + additions
+  // Clear existing and re-seed authentic legacy data + additions (11 total)
   db.exec('DELETE FROM courses;');
   db.exec('DELETE FROM instructors;');
   db.exec('DELETE FROM reviews;');
@@ -98,7 +98,7 @@ export function initDB() {
 }
 
 function seedAuthenticLegacyData() {
-  // Seed Authentic Courses & Combos + 1 Specialized & 1 Skills Refresher
+  // Seed All 9 Authentic Legacy Courses/Combos + 1 Specialized + 1 Skills Refresher (Total = 11)
   const courses = [
     {
       id: 'provisional-lessons',
@@ -167,6 +167,17 @@ function seedAuthenticLegacyData() {
       code: 'Class 4 Combo'
     },
     {
+      id: 'combo-c2-lite',
+      title: 'Class 2 Heavy Vehicle Combo Lite',
+      category: 'Heavy Combo',
+      description: 'Heavy vehicle entry package including provisional lessons, 10 Class 2 driving lessons, and truck hire.',
+      duration: '10 Heavy Lessons + Truck Hire',
+      price: 150,
+      badge: 'Heavy Lite',
+      features: JSON.stringify(['Provisional Theory Lessons', '10 Class 2 Driving Lessons', 'Heavy Truck VID Hire', 'Professional Coaching']),
+      code: 'Class 2 Combo'
+    },
+    {
       id: 'combo-c2-ultra',
       title: 'Class 2 Heavy Vehicle Combo Ultra',
       category: 'Heavy Combo',
@@ -175,6 +186,17 @@ function seedAuthenticLegacyData() {
       price: 180,
       badge: 'Heavy Recommended',
       features: JSON.stringify(['Provisional Theory Lessons', '20 Class 2 Driving Lessons', 'Heavy Truck VID Hire', 'Complete Road Maneuvers']),
+      code: 'Class 2 Combo'
+    },
+    {
+      id: 'combo-c2-ultimate',
+      title: 'Class 2 Heavy Vehicle Combo Ultimate',
+      category: 'Heavy Combo',
+      description: 'Ultimate heavy vehicle mastery package with provisional lessons, 30 Class 2 driving lessons, and truck hire.',
+      duration: '30 Heavy Lessons + Truck Hire',
+      price: 210,
+      badge: 'Heavy Ultimate',
+      features: JSON.stringify(['Provisional Theory Lessons', '30 Class 2 Driving Lessons', 'Heavy Truck VID Hire', 'Commercial Fleet Readiness']),
       code: 'Class 2 Combo'
     },
     {
@@ -263,7 +285,7 @@ function seedAuthenticLegacyData() {
     insertInstructor.run(inst.id, inst.name, inst.title, inst.bio, inst.experience, inst.qualifications, inst.rating, inst.specialty);
   }
 
-  // Seed Authentic Reviews + 1-2 Moderate (3-star & 2-star) Reviews to balance average to ~4.5
+  // Seed Authentic Reviews
   const reviews = [
     {
       author_name: 'Nigel Mupira',

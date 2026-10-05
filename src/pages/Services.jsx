@@ -19,7 +19,7 @@ export default function Services({ setActiveTab }) {
     loadCourses();
   }, []);
 
-  const categories = ['All', 'Theory & Test Prep', 'Practical Driving', 'Specialized Training', 'Skills Refresh'];
+  const categories = ['All', 'Theory & Test Prep', 'Practical Driving', 'Combo Package', 'Heavy Combo', 'Specialized Training', 'Skills Refresh'];
 
   const filteredCourses = activeCategory === 'All' 
     ? courses 
