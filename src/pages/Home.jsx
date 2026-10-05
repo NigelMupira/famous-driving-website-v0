@@ -101,7 +101,7 @@ export default function Home({ setActiveTab, setToast }) {
               {/* Key Benefit Pill Highlights */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                 {[
-                  { icon: ShieldCheck, text: '99.4% Pass Rate' },
+                  { icon: ShieldCheck, text: '91.6% Pass Rate' },
                   { icon: Car, text: 'Dual-Control Cars' },
                   { icon: Users, text: 'Certified Instructors' },
                   { icon: Clock, text: 'Flexible Hours' },
@@ -171,7 +171,7 @@ export default function Home({ setActiveTab, setToast }) {
                     <input 
                       type="tel" 
                       required
-                      placeholder="e.g. 077 123 4567"
+                      placeholder="e.g. +263 70 000 0000"
                       value={quickBooking.student_phone}
                       onChange={(e) => setQuickBooking({ ...quickBooking, student_phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 text-sm"
@@ -185,10 +185,23 @@ export default function Home({ setActiveTab, setToast }) {
                       onChange={(e) => setQuickBooking({ ...quickBooking, course_id: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-amber-500 text-sm"
                     >
-                      <option value="practical-code-8">Class 4 Practical Driving ($180)</option>
-                      <option value="learner-prep">Learner's Theory Mastery ($65)</option>
-                      <option value="defensive-driving">Defensive Driving ($120)</option>
-                      <option value="refresher-course">Refresher Package ($95)</option>
+                      {courses.length > 0 ? (
+                        courses.map((c) => (
+                          <option key={c.id} value={c.id}>
+                            {c.title} (${c.price})
+                          </option>
+                        ))
+                      ) : (
+                        <>
+                          <option value="combo-c4-ultra">Class 4 Combo Ultra Package ($140)</option>
+                          <option value="provisional-lessons">Provisional Theory Lessons ($15)</option>
+                          <option value="class-4-lesson">Class 4 Single Driving Lesson ($5)</option>
+                          <option value="class-2-lesson">Class 2 Heavy Driving Lesson ($7)</option>
+                          <option value="combo-c2-ultra">Class 2 Heavy Combo Ultra ($180)</option>
+                          <option value="specialized-night-weather">Night & Weather Navigation ($65)</option>
+                          <option value="cbd-traffic-refresher">CBD Traffic Refresher ($45)</option>
+                        </>
+                      )}
                     </select>
                   </div>
 
@@ -240,11 +253,11 @@ export default function Home({ setActiveTab, setToast }) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 glass-panel p-8 rounded-3xl border border-slate-800 text-center">
           <div>
-            <p className="text-3xl sm:text-4xl font-extrabold text-amber-400">99.4%</p>
+            <p className="text-3xl sm:text-4xl font-extrabold text-amber-400">91.6%</p>
             <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1">Provisional Pass Rate</p>
           </div>
           <div>
-            <p className="text-3xl sm:text-4xl font-extrabold text-white">4,800+</p>
+            <p className="text-3xl sm:text-4xl font-extrabold text-white">2,500+</p>
             <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1">Licensed Drivers Taught</p>
           </div>
           <div>
@@ -252,7 +265,7 @@ export default function Home({ setActiveTab, setToast }) {
             <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1">Years of Excellence</p>
           </div>
           <div>
-            <p className="text-3xl sm:text-4xl font-extrabold text-white">4.9 / 5.0</p>
+            <p className="text-3xl sm:text-4xl font-extrabold text-white">4.5 / 5.0</p>
             <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1">Average Student Rating</p>
           </div>
         </div>

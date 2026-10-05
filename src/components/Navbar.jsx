@@ -27,7 +27,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center gap-2">
             <Award className="w-3.5 h-3.5 text-amber-400" />
-            <span>Harare's Certified Driving Academy — Class 2 & Class 4 Training</span>
+            <span>Harare's Certified Driving Academy — 91.6% Pass Rate</span>
           </div>
           <div className="flex items-center gap-4 text-slate-300 hidden md:flex">
             <a href="tel:+263714887143" className="flex items-center gap-1.5 hover:text-amber-400 transition-colors">

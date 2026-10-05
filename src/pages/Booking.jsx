@@ -260,7 +260,7 @@ export default function Booking({ setToast }) {
                     <input
                       type="tel"
                       required
-                      placeholder="077 123 4567"
+                      placeholder="e.g. +263 70 000 0000"
                       value={formData.student_phone}
                       onChange={(e) => setFormData({ ...formData, student_phone: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500"

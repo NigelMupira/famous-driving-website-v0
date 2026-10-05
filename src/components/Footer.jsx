@@ -63,15 +63,15 @@ export default function Footer({ setActiveTab }) {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                <span>Harare Institute of Technology / CBD Campus, Harare, Zimbabwe</span>
+                <span>Robert Mugabe Square, Harare, Zimbabwe</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-amber-400 shrink-0" />
-                <a href="tel:+263771234567" className="hover:text-white transition-colors">+263 77 123 4567</a>
+                <a href="tel:+263714887143" className="hover:text-white transition-colors">+263 71 488 7143</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-amber-400 shrink-0" />
-                <a href="mailto:info@famousdrivingschool.co.zw" className="hover:text-white transition-colors">info@famousdrivingschool.co.zw</a>
+                <a href="mailto:famousdrivingschool@gmail.com" className="hover:text-white transition-colors">famousdrivingschool@gmail.com</a>
               </li>
             </ul>
           </div>

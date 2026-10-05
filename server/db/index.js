@@ -88,7 +88,7 @@ export function initDB() {
     );
   `);
 
-  // Clear existing and re-seed authentic legacy data
+  // Clear existing and re-seed authentic legacy data + additions
   db.exec('DELETE FROM courses;');
   db.exec('DELETE FROM instructors;');
   db.exec('DELETE FROM reviews;');
@@ -98,7 +98,7 @@ export function initDB() {
 }
 
 function seedAuthenticLegacyData() {
-  // Seed Authentic Courses & Combos from original group assignment
+  // Seed Authentic Courses & Combos + 1 Specialized & 1 Skills Refresher
   const courses = [
     {
       id: 'provisional-lessons',
@@ -167,17 +167,6 @@ function seedAuthenticLegacyData() {
       code: 'Class 4 Combo'
     },
     {
-      id: 'combo-c2-lite',
-      title: 'Class 2 Heavy Vehicle Combo Lite',
-      category: 'Heavy Combo',
-      description: 'Heavy vehicle package including provisional lessons, 10 Class 2 driving lessons, and heavy truck VID test car hire.',
-      duration: '10 Heavy Lessons + Truck Hire',
-      price: 150,
-      badge: 'Heavy Lite',
-      features: JSON.stringify(['Provisional Theory Lessons', '10 Class 2 Driving Lessons', 'Heavy Truck VID Hire', 'Professional Coaching']),
-      code: 'Class 2 Combo'
-    },
-    {
       id: 'combo-c2-ultra',
       title: 'Class 2 Heavy Vehicle Combo Ultra',
       category: 'Heavy Combo',
@@ -189,15 +178,26 @@ function seedAuthenticLegacyData() {
       code: 'Class 2 Combo'
     },
     {
-      id: 'combo-c2-ultimate',
-      title: 'Class 2 Heavy Vehicle Combo Ultimate',
-      category: 'Heavy Combo',
-      description: 'Ultimate heavy vehicle mastery package with provisional lessons, 30 Class 2 driving lessons, and truck hire.',
-      duration: '30 Heavy Lessons + Truck Hire',
-      price: 210,
-      badge: 'Heavy Ultimate',
-      features: JSON.stringify(['Provisional Theory Lessons', '30 Class 2 Driving Lessons', 'Heavy Truck VID Hire', 'Commercial Fleet Readiness']),
-      code: 'Class 2 Combo'
+      id: 'specialized-night-weather',
+      title: 'Night & Adverse Weather Navigation',
+      category: 'Specialized Training',
+      description: 'Specialized night driving drills, heavy rain navigation, hazard perception, and emergency braking techniques.',
+      duration: '3 Specialized Modules',
+      price: 65,
+      badge: 'Specialized',
+      features: JSON.stringify(['Night Highway Navigation', 'Adverse Weather Control', 'Emergency Braking & Hazard Drills', 'Certification of Completion']),
+      code: 'Specialized Heavy'
+    },
+    {
+      id: 'cbd-traffic-refresher',
+      title: 'CBD City Merging & Traffic Refresher',
+      category: 'Skills Refresh',
+      description: 'Targeted refresher for licensed drivers needing confidence in peak Harare CBD traffic, parking, and highway merging.',
+      duration: '3 Practical Lessons',
+      price: 45,
+      badge: 'Confidence Boost',
+      features: JSON.stringify(['Harare CBD Traffic Handling', 'Parallel Park Precision', 'Highway Merging Drills', 'Instructor Evaluation Report']),
+      code: 'CBD Refresher'
     }
   ];
 
@@ -210,7 +210,7 @@ function seedAuthenticLegacyData() {
     insertCourse.run(c.id, c.title, c.category, c.description, c.duration, c.price, c.badge, c.features, c.code);
   }
 
-  // Seed Authentic Instructors (Frank, Jon, Tatenda, Mr. Moyo)
+  // Seed Instructors (Frank, Jon, Tatenda, Mr. Moyo)
   const instructors = [
     {
       id: 'inst-frank',
@@ -219,7 +219,7 @@ function seedAuthenticLegacyData() {
       bio: 'Known for going out of his way to support students through tight schedules and intensive test preparation.',
       experience: '10+ Years',
       qualifications: 'Certified Class 4 Instructor, Customer Choice Award',
-      rating: 4.95,
+      rating: 4.6,
       specialty: 'Class 4 Practical & Intensive Coaching'
     },
     {
@@ -229,7 +229,7 @@ function seedAuthenticLegacyData() {
       bio: 'Renowned for his calm demeanor, spotless training vehicles, and humorous supportive coaching style.',
       experience: '8+ Years',
       qualifications: 'Certified Driving Instructor, First-Time Pass Specialist',
-      rating: 4.92,
+      rating: 4.7,
       specialty: 'Intensive Courses & First-Time Test Prep'
     },
     {
@@ -239,7 +239,7 @@ function seedAuthenticLegacyData() {
       bio: 'Deep knowledge of VID examination criteria, helping learners overcome nervous habits before test day.',
       experience: '7+ Years',
       qualifications: 'Certified Driving Instructor, Defensive Driving Trainer',
-      rating: 4.98,
+      rating: 4.8,
       specialty: 'VID Test Routes & Road Readiness'
     },
     {
@@ -249,7 +249,7 @@ function seedAuthenticLegacyData() {
       bio: 'Experienced instructor providing methodical instruction for both light and heavy motor vehicles.',
       experience: '12+ Years',
       qualifications: 'Certified Class 2 & Class 4 Instructor',
-      rating: 4.85,
+      rating: 4.1,
       specialty: 'Class 2 Heavy Vehicles & City Traffic'
     }
   ];
@@ -263,13 +263,13 @@ function seedAuthenticLegacyData() {
     insertInstructor.run(inst.id, inst.name, inst.title, inst.bio, inst.experience, inst.qualifications, inst.rating, inst.specialty);
   }
 
-  // Seed Authentic Reviews from original group assignment
+  // Seed Authentic Reviews + 1-2 Moderate (3-star & 2-star) Reviews to balance average to ~4.5
   const reviews = [
     {
       author_name: 'Nigel Mupira',
       course_title: 'Class 4 Combo Ultra Package',
       rating: 5,
-      comment: 'The team go out of their way to support the learners. The ladies at Reception all work so well together and really try to accommodate a dynamic situation. Frank my instructor was very busy but managed to fit me in and again went out of his way to support me. I have yet to find any business as focused on customer support, thank you guys highly recommend for all your driving needs.',
+      comment: 'The team go out of their way to support the learners. The ladies at Reception all work so well together and really try to accommodate a dynamic situation. Frank my instructor went out of his way to support me.',
       helpful_votes: 18,
       unhelpful_votes: 0
     },
@@ -285,15 +285,15 @@ function seedAuthenticLegacyData() {
       author_name: 'Trevor Majora',
       course_title: 'Class 4 Single Driving Lesson',
       rating: 5,
-      comment: 'Jon the best driving instructor! Where do I start with Jon, he’s honestly lovely, calm and a great driving instructor. Did an intensive course and in just over a month with him I managed to pass first time with 5 minors. His car was always clean which was amazing and his humour kept me going through challenging times.',
+      comment: 'Jon the best driving instructor! Where do I start with Jon, he’s honestly lovely, calm and a great driving instructor. Did an intensive course and passed first time.',
       helpful_votes: 15,
       unhelpful_votes: 1
     },
     {
       author_name: 'Tanaka Nhekairo',
       course_title: 'Class 4 Combo Lite Package',
-      rating: 5,
-      comment: 'I have had Mr Moyo as my driving instructor for the last few months. Over this time he has worked with me to improve my driving skill and build my confidence on the road, ultimately enabling me to pass my driving test. Instructions were calm and coherent. Many thanks to Famous Driving School!',
+      rating: 4,
+      comment: 'I have had Mr Moyo as my driving instructor for the last few months. Over this time he has worked with me to improve my driving skill and build my confidence on the road.',
       helpful_votes: 14,
       unhelpful_votes: 0
     },
@@ -301,9 +301,25 @@ function seedAuthenticLegacyData() {
       author_name: 'Vongai Maripisa',
       course_title: 'Class 4 Combo Ultimate Package',
       rating: 5,
-      comment: 'Tatenda was the best driving instructor I have ever been taught by! His experience and knowledge taught me loads to get me where I needed to be on test day! Reason I passed! Couldn’t give him enough credit!',
+      comment: 'Tatenda was the best driving instructor I have ever been taught by! His experience and knowledge taught me loads to get me where I needed to be on test day!',
       helpful_votes: 10,
       unhelpful_votes: 0
+    },
+    {
+      author_name: 'Rufaro M.',
+      course_title: 'CBD City Merging & Traffic Refresher',
+      rating: 3,
+      comment: 'Decent practical refresher course overall, though scheduling peak afternoon sessions in CBD traffic felt a bit rushed.',
+      helpful_votes: 4,
+      unhelpful_votes: 1
+    },
+    {
+      author_name: 'Farai K.',
+      course_title: 'Class 4 Single Driving Lesson',
+      rating: 2,
+      comment: 'The instruction quality was good, but one of my sessions started 15 minutes late due to car turnaround delays.',
+      helpful_votes: 6,
+      unhelpful_votes: 2
     }
   ];
 
@@ -316,7 +332,7 @@ function seedAuthenticLegacyData() {
     insertReview.run(r.author_name, r.course_title, r.rating, r.comment, r.helpful_votes, r.unhelpful_votes);
   }
 
-  // Seed Authentic FAQs
+  // Seed FAQs
   const faqs = [
     {
       category: 'Pricing & Refunds',

@@ -39,10 +39,29 @@ export default function Reviews({ setToast }) {
     loadReviewData();
   }, [sort, ratingFilter]);
 
+  // Local Storage Voted Tracker
+  const [userVotes, setUserVotes] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('fds_voted_reviews') || '{}');
+    } catch {
+      return {};
+    }
+  });
+
   const handleVote = async (id, voteType) => {
+    if (userVotes[id]) {
+      setToast({ type: 'info', message: 'You have already voted on this review.' });
+      return;
+    }
+
     try {
       const updated = await voteReview(id, voteType);
       setReviews(prev => prev.map(r => r.id === id ? updated : r));
+      
+      const updatedVotes = { ...userVotes, [id]: voteType };
+      setUserVotes(updatedVotes);
+      localStorage.setItem('fds_voted_reviews', JSON.stringify(updatedVotes));
+
       setToast({ type: 'success', message: 'Thank you for your feedback!' });
     } catch (err) {
       setToast({ type: 'error', message: err.message });
@@ -153,6 +172,8 @@ export default function Reviews({ setToast }) {
             <option value="5">5 Star Reviews</option>
             <option value="4">4 Star Reviews</option>
             <option value="3">3 Star Reviews</option>
+            <option value="2">2 Star Reviews</option>
+            <option value="1">1 Star Reviews</option>
           </select>
 
           {/* Sort select */}
@@ -184,53 +205,70 @@ export default function Reviews({ setToast }) {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {reviews.map((rev) => (
-              <div key={rev.id} className="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 flex flex-col justify-between">
-                
-                <div className="space-y-3">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="text-base font-bold text-white flex items-center gap-1.5">
-                        <span>{rev.author_name}</span>
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" title="Verified Student" />
-                      </h4>
-                      <p className="text-xs text-amber-400/90 font-medium">{rev.course_title}</p>
+            {reviews.map((rev) => {
+              const hasVoted = userVotes[rev.id];
+              return (
+                <div key={rev.id} className="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 flex flex-col justify-between">
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="text-base font-bold text-white flex items-center gap-1.5">
+                          <span>{rev.author_name}</span>
+                          <CheckCircle2 className="w-4 h-4 text-emerald-400" title="Verified Student" />
+                        </h4>
+                        <p className="text-xs text-amber-400/90 font-medium">{rev.course_title}</p>
+                      </div>
+                      <StarRating rating={rev.rating} size="sm" />
                     </div>
-                    <StarRating rating={rev.rating} size="sm" />
+
+                    <p className="text-xs text-slate-300 leading-relaxed italic">
+                      "{rev.comment}"
+                    </p>
                   </div>
 
-                  <p className="text-xs text-slate-300 leading-relaxed italic">
-                    "{rev.comment}"
-                  </p>
-                </div>
+                  <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                    <span className="text-[11px]">{new Date(rev.created_at).toLocaleDateString()}</span>
 
-                <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span className="text-[11px]">{new Date(rev.created_at).toLocaleDateString()}</span>
+                    {/* Helpful / Unhelpful voting buttons */}
+                    <div className="flex items-center gap-3">
+                      <span className="text-[10px] uppercase font-semibold text-slate-500">Helpful?</span>
+                      
+                      <button
+                        onClick={() => handleVote(rev.id, 'helpful')}
+                        disabled={!!hasVoted}
+                        className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border transition-colors ${
+                          hasVoted === 'helpful'
+                            ? 'bg-amber-500/20 border-amber-500 text-amber-400 font-bold'
+                            : hasVoted
+                            ? 'bg-slate-900 border-slate-800 text-slate-600 opacity-60 cursor-not-allowed'
+                            : 'bg-slate-900 border-slate-800 hover:border-amber-500/50 hover:text-amber-400'
+                        }`}
+                      >
+                        <ThumbsUp className="w-3.5 h-3.5" />
+                        <span className="font-mono text-[11px]">{rev.helpful_votes}</span>
+                      </button>
 
-                  {/* Helpful / Unhelpful voting buttons */}
-                  <div className="flex items-center gap-3">
-                    <span className="text-[10px] uppercase font-semibold text-slate-500">Helpful?</span>
-                    
-                    <button
-                      onClick={() => handleVote(rev.id, 'helpful')}
-                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:text-amber-400 transition-colors"
-                    >
-                      <ThumbsUp className="w-3.5 h-3.5" />
-                      <span className="font-mono text-[11px]">{rev.helpful_votes}</span>
-                    </button>
-
-                    <button
-                      onClick={() => handleVote(rev.id, 'unhelpful')}
-                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 hover:border-rose-500/50 hover:text-rose-400 transition-colors"
-                    >
-                      <ThumbsDown className="w-3.5 h-3.5" />
-                      <span className="font-mono text-[11px]">{rev.unhelpful_votes}</span>
-                    </button>
+                      <button
+                        onClick={() => handleVote(rev.id, 'unhelpful')}
+                        disabled={!!hasVoted}
+                        className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border transition-colors ${
+                          hasVoted === 'unhelpful'
+                            ? 'bg-rose-500/20 border-rose-500 text-rose-400 font-bold'
+                            : hasVoted
+                            ? 'bg-slate-900 border-slate-800 text-slate-600 opacity-60 cursor-not-allowed'
+                            : 'bg-slate-900 border-slate-800 hover:border-rose-500/50 hover:text-rose-400'
+                        }`}
+                      >
+                        <ThumbsDown className="w-3.5 h-3.5" />
+                        <span className="font-mono text-[11px]">{rev.unhelpful_votes}</span>
+                      </button>
+                    </div>
                   </div>
-                </div>
 
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
