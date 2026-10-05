@@ -238,7 +238,7 @@ export default function Booking({ setToast }) {
                     <input
                       type="text"
                       required
-                      placeholder="Nigel Mupira"
+                      placeholder="e.g. Jane Smith"
                       value={formData.student_name}
                       onChange={(e) => setFormData({ ...formData, student_name: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500"
@@ -249,7 +249,7 @@ export default function Booking({ setToast }) {
                     <input
                       type="email"
                       required
-                      placeholder="nigel@example.com"
+                      placeholder="jane@example.com"
                       value={formData.student_email}
                       onChange={(e) => setFormData({ ...formData, student_email: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500"

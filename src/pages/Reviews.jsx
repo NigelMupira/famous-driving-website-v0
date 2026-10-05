@@ -250,7 +250,7 @@ export default function Reviews({ setToast }) {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Makatida Ngwerume"
+                  placeholder="e.g. Alex Johnson"
                   value={newReview.author_name}
                   onChange={(e) => setNewReview({ ...newReview, author_name: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500"

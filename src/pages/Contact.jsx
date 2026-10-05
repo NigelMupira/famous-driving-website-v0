@@ -153,7 +153,7 @@ export default function Contact({ setToast }) {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Nigel Mupira"
+                      placeholder="e.g. John Smith"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500"
